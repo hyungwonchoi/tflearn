@@ -15,6 +15,7 @@ X, Y = shuffle(X, Y)
 encoder = tflearn.input_data(shape=[None, 32*32*3])
 encoder = tflearn.fully_connected(encoder, 512)
 encoder = tflearn.fully_connected(encoder, 512)
+encoder = tflearn.fully_connected(encoder, 512)
 encoder = tflearn.fully_connected(encoder, 64, activation='tanh')
 
 # Binarize layer
@@ -22,6 +23,7 @@ binary = encoder
 
 # Building the decoder
 decoder = tflearn.fully_connected(binary, 512)
+decoder = tflearn.fully_connected(decoder, 512)
 decoder = tflearn.fully_connected(decoder, 512)
 decoder = tflearn.fully_connected(decoder, 32*32*3)
 
