@@ -16,7 +16,7 @@ import pickle
 from ..data_utils import to_categorical
 
 
-def load_data(dirname="cifar-10-batches-py", one_hot=False):
+def load_data(dirname="cifar-10-batches-py", one_hot=False, flat=False):
     tarpath = maybe_download("cifar-10-python.tar.gz",
                              "http://www.cs.toronto.edu/~kriz/",
                              dirname)
@@ -46,6 +46,9 @@ def load_data(dirname="cifar-10-batches-py", one_hot=False):
     if one_hot:
         Y_train = to_categorical(Y_train, 10)
         Y_test = to_categorical(Y_test, 10)
+    if flat :
+        X_train = np.reshape(X_train, ((X_train.shape[0]), 32 * 32 * 3))
+        X_test = np.reshape(X_test, ((X_test.shape[0]), 32 * 32 * 3))
 
     return (X_train, Y_train), (X_test, Y_test)
 
